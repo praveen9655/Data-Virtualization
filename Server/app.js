@@ -5,6 +5,14 @@ import cors from 'cors';
 // import from files
 import reportRouter from './routes/index.js';
 import { mongoDB } from './database/index.js';
+const dotenv = require('dotenv');
+dotenv.config()
+
+let appUrl = "http://localhost:3000";
+
+if (process.env.VERCEL_APP) {
+    appUrl = `${process.env.VERCEL_APP}`;
+}
 
 // Load environment variables
 config({
@@ -27,7 +35,7 @@ app.use(express.urlencoded({ extended: true }));
 
 //set 'credentials: true' to pass --> headers, cookies, etc to browser/frontend
 app.use(cors({
-    origin: ['http://localhost:3000'],
+    origin: [appUrl],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
 }));

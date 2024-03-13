@@ -6,6 +6,12 @@ import './App.css';
 import Header from './components/Header';
 import Tabsrow from './components/Tabsrow';
 
+let apiUrl = "http://localhost:8000";
+
+if (process.env.REACT_APP_VERCEL_API) {
+    apiUrl = `${process.env.REACT_APP_VERCEL_API}`;
+}
+
 
 function App() {
     //state to save data received from the server
@@ -13,7 +19,7 @@ function App() {
     //asynchronous function to fetch data from server and updating the state
     const getDataFromDB = async() => {
         try{
-          const response = await axios.get("http://localhost:8000/api/data/all");
+          const response = await axios.get(apiUrl+"/api/data/all");
           setMainData(response.data.data)
 
         }

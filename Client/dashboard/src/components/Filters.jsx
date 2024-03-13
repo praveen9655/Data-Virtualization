@@ -3,6 +3,12 @@ import Button from 'react-bootstrap/Button';
 import { Dropdown } from 'react-bootstrap';
 import axios from 'axios';
 
+let apiUrl = "http://localhost:8000";
+
+if (process.env.REACT_APP_VERCEL_API) {
+    apiUrl = `${process.env.REACT_APP_VERCEL_API}`;
+}
+
 // here we are returning a bootstrap dropdown and just a button
 const Filters = ({ setMainData }) => {
     //function to call the getDataFromDB function and passing the 'year' to it entered by the user
@@ -12,7 +18,7 @@ const Filters = ({ setMainData }) => {
     // func to fetch the filtered data by year and update the state
     const getDataFromDB = async(year) => {
         try{
-            const response = await axios.get(`http://localhost:8000/api/data/year/${year}`);
+            const response = await axios.get(apiUrl+`/api/data/year/${year}`);
             setMainData(response.data.data)
         }
         catch(e){
@@ -22,7 +28,7 @@ const Filters = ({ setMainData }) => {
     // func to handle the "reset filters button" by making another api call and update state 
     const handleReset = async() => {
         try{
-            const response = await axios.get("http://localhost:8000/api/data/all");
+            const response = await axios.get(apiUrl+"/api/data/all");
             setMainData(response.data.data)
         }
         catch(e){
