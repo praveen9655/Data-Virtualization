@@ -5,8 +5,7 @@ import cors from 'cors';
 // import from files
 import reportRouter from './routes/index.js';
 import { mongoDB } from './database/index.js';
-const dotenv = require('dotenv');
-dotenv.config()
+
 
 let appUrl = "http://localhost:3000";
 
