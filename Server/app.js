@@ -7,11 +7,11 @@ import reportRouter from './routes/index.js';
 import { mongoDB } from './database/index.js';
 
 
-let appUrl = "http://localhost:3000";
+let appUrl = "https://datavirtualization.vercel.app";
 
-if (process.env.VERCEL_APP) {
-    appUrl = `${process.env.VERCEL_APP}`;
-}
+// if (process.env.VERCEL_APP) {
+//     appUrl = `${process.env.VERCEL_APP}`;
+// }
 
 // Load environment variables
 config({
